@@ -1,12 +1,11 @@
-class_and_module/*
-!class_and_module/.gitignore
-
 credentials/*
 !credentials/.gitignore
+
+lib_others/*
+!lib_others/.gitignore
 
 referencias.txt
 README.md
 
-VBA_for_GoogleSheets.accdb
 
 
