@@ -4,8 +4,5 @@ credentials/*
 lib_others/*
 !lib_others/.gitignore
 
-referencias.txt
-README.md
-
 
 

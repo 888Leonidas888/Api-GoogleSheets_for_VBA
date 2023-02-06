@@ -1,0 +1,14 @@
+DOCUMENTACION OFICIAL DE LA API DE GOOGLE SHEETS:
+
+https://developers.google.com/sheets/api/reference/rest?apix=true
+
+
+INTERFACES EN VBA:
+
+https://stackoverflow.com/questions/3669270/vba-inheritance-analog-of-super
+
+
+
+Micro lenguaje SQL para Google Sheets:
+
+https://developers.google.com/chart/interactive/docs/querylanguage

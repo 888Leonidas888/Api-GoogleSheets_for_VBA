@@ -1,7 +1,24 @@
 Attribute VB_Name = "Main"
 
+'Todas las rutinas deberán incluir una instancia de FlowOauth, es la que se encargará
+'de solicitar un TOKEN DE ACCESO para consumir las Apis Google.
+
+'Las respuestas que se reciben de las funciones son en formato JSON, estan son procesadas
+'por el el módulo JsonConverter y después son pasadas por el módulo ProcessResponse
+'para ser mostradas en texto plano, puede usarlo como guía para manipular las respuestas
+'que son entregadas por parte del servidor. 
+
+
 Sub copyTo_SpreadSheetSheet()
     
+    'SpreadSheetSheet.CopyTo(spreadsheetsId,SheetId,destinationSpreadsheetId)
+    'Copia un hoja en el mismo libro u otro.
+    'param->string->spreadsheetsId->Libro de origen
+    'param->integer->SheetId->Id de la hoja que se desea copiar.
+    'param->string->destinationSpreadsheetId->Libro destino donde se pegará.
+    'return->string->json
+
+
     Dim credentialsClient As String, credentialsToken As String, credentialsApiKey As String
     Dim oFlowOauth As New FlowOauth
     Dim oSpreadSheet As New SpreadSheetSheet
@@ -25,7 +42,7 @@ Sub copyTo_SpreadSheetSheet()
                             credentialsToken, _
                             credentialsApiKey, _
                             OU_SCOPE_SPREADSHEETS
-    
+
     With oSpreadSheet
         .ConnectionService oFlowOauth
          json = .CopyTo(spreadsheetsId, SheetId, destinationSpreadsheetId)
@@ -36,6 +53,11 @@ Sub copyTo_SpreadSheetSheet()
 End Sub
 
 Sub get_GoogleSheetWorkBook()
+
+    'SpreadSheetSheet.RecoveryById()
+    'Recupera la información de libro a través del id.
+    'param->string->spreadsheetsId->Id del libro que se desea recuperar.
+    'return->string->json
     
     Dim credentialsClient As String, credentialsToken As String, credentialsApiKey As String
     Dim oFlowOauth As New FlowOauth
@@ -72,7 +94,15 @@ Sub get_GoogleSheetWorkBook()
 End Sub
 
 Sub get__SpreadSheetValue()
-        
+    
+    'SpreadSheetValue.GetValue()
+    'Recupera lo información contenida en las celdas de la hoja.
+    'param->string->spreadsheetsId->Id del libro
+    'param->string->[majordimension]->puede ser ROWS O COLUMNS, indica como se recuperará los datos, opción predeterminada es ROWS
+    'param->string->[valueRenderOption]->Como debe presentarse la salida de los datos, la opción predeterminada es FORMATTED_VALUE.
+    'param->string->[dateTimeRenderOption]->Como debe presentarse las horas y días en la respuesta, la opción predeterminada es SERIAL_NUMBER.
+    'rerunr->string->json
+
     Dim credentialsClient As String, credentialsToken As String, credentialsApiKey As String
     Dim oFlowOauth As New FlowOauth
     Dim SpreadSG As New SpreadSheetValue
@@ -89,7 +119,7 @@ Sub get__SpreadSheetValue()
     id = "1FC3AXegBhMeDWtjE-cPnVWlZAENLkOjXTueMWye7L4w"
     range = "bbdd_libros"
     
-    Rem comienza de el flujo de Oauth (autenticaci�n y autorizaci�n)
+    Rem comienza de el flujo de Oauth (autenticaci�n y autorizaci�n)
     oFlowOauth.InitializeFlow _
                                credentialsClient, _
                                credentialsToken, _
@@ -110,7 +140,7 @@ Sub get__SpreadSheetValue()
             strValue = Empty
             For o = LBound(arrValue, 2) To UBound(arrValue, 2)
         Rem la estructura condicional solo es para obtener una
-        Rem mejor vista de los datos puede obviarse junto con la funci�n ConsoleShow()
+        Rem mejor vista de los datos puede obviarse junto con la funci�n ConsoleShow()
                 If o = 0 Then
                     strValue = strValue & ConsoleShow(arrValue(i, o), 4)
                 Else
@@ -126,6 +156,8 @@ Sub get__SpreadSheetValue()
 End Sub
 
 Sub update__SpreadSheetValue()
+
+    'Actualizar los datos
     
     Dim credentialsClient As String, credentialsToken As String, credentialsApiKey As String
     Dim oFlowOauth As New FlowOauth
@@ -142,10 +174,12 @@ Sub update__SpreadSheetValue()
     id = "1FC3AXegBhMeDWtjE-cPnVWlZAENLkOjXTueMWye7L4w"
     range = "BBDD_LIBROS!a12:d13"
 
+    'se debe crear una colección con los datos, cada columna debe ir separada por una barra pipe.(Alt + 124)
     updateRangeValue.Add "12|Ataque a los titanes 34|9788467948158|Hajime Isayama"
     updateRangeValue.Add "13|Ataque a los titanes 33|9788467948158|Hajime Isayama"
     
-'    updateRangeValue.Add "=QUERY(BBDD_LIBROS!A1:E;\""SELECT *\"";1)"
+    'Además de solo enviar texto, puede enviar fórmulas,como la que se muestra a continuación
+    'updateRangeValue.Add "=QUERY(BBDD_LIBROS!A1:E;\""SELECT *\"";1)"
  
     oFlowOauth.InitializeFlow _
                                  credentialsClient, _
@@ -182,7 +216,7 @@ Sub append__SpreadSheetvalue()
     id = "1FC3AXegBhMeDWtjE-cPnVWlZAENLkOjXTueMWye7L4w"
     range = "bbdd_libros"
 
-'    appendRangeValue.Add "ID|DESCRIPCION|UME"
+    'Se agregará los datos al final de la tabla.
     appendRangeValue.Add "14|aplicaciones VBA con Excel|978612302653|Manuel Torres Remon"
     
     oFlowOauth.InitializeFlow _
@@ -422,7 +456,7 @@ Sub batchUpdate_SpreadSheetSheet()
         json = .batchUpdate(id, requets)
         
         If .Operation = GO_SUCCESSFUL Then
-            Debug.Print "Actualizaci�n aplicada a : "; ProcessResponse.batchUpdate(json)
+            Debug.Print "Actualizaci�n aplicada a : "; ProcessResponse.batchUpdate(json)
         Else
             Debug.Print "No se pudo actualizar"
         End If
