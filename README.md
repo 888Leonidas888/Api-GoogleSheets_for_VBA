@@ -1,4 +1,4 @@
-<h1 style='text-algn:center'>Client VBA for Api GoogleSheets</h1>
+<h1 style='text-algin:center'>Client VBA for Api GoogleSheets</h1>
 
 Use **Client VBA for Api Googlesheets** para crear libros, crear hojas, leer, actualizar, agregar, eliminar, actualizar por lotes el contenido de sus GoogleSheets.
 
