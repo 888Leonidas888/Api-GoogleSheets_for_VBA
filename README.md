@@ -3,7 +3,7 @@
 ![Static Badge](https://img.shields.io/badge/VBA-4c9c4c)
 ![Static Badge](https://img.shields.io/badge/Api%20Google%20Sheets-cccccc)
 
-![Microsoft Visual Basic for Applications](https://www.tachytelic.net/wp-content/uploads/VBA_LOGO_Featured.png)
+![Microsoft Visual Basic for Applications](https://tecno-simple.com/wp-content/uploads/2021/07/Visual-Basic-para-aplicaciones.jpg)
 
 Crea, lee, actualiza y elemina los datos de tus GoogleSheets a través de [Google Sheets API](https://console.cloud.google.com/marketplace/product/google/sheets.googleapis.com?q=search&referrer=search&project=total-messenger-353018) usando VBA.
 
@@ -18,7 +18,7 @@ Sí quieres contribuir haz un fork del proyecto y envia un PR para discutirlo.
 3. [Configuración de entorno en Google](#configuración-de-entorno-en-google)
 4. [Guardar credenciales de acceso](#guardar-credenciales-de-acceso)
 5. [Ejemplos de uso](#ejemplos-de-uso)
-6. [Recursos adicionales]()
+6. [Recursos adicionales](#Recursos-adicionales)
 
 ## Instalación
 
